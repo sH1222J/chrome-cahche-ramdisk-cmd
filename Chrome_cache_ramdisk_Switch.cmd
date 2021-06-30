@@ -10,7 +10,7 @@ setlocal enabledelayedexpansion
 :main
 cls
 echo.
-echo		[ Google Chrome 램디스크 자동 경로구성 배치파일 by SH. ]
+echo		[ Google Chrome 램디스크 자동 경로구성 배치파일 by SH. [21. 06. 30. Modified :)]]
 echo.
 echo.
 echo.
@@ -32,7 +32,9 @@ goto main
 
 :Go
 rem 사용자 크롬 경로 지정
-set ChromeDrive="R:\Temp\Chrome_cache"
+set /p ChromeTempDrivePath=임시 폴더 저장 경로:
+set ChromeDrive=%ChromeTempDrivePath%
+echo 설정한 경로는 %ChromeTempDrivePath% 입니다.
 rem 크롬 Cache 폴더 지정
 mkdir "%ChromeDrive%\Cache"
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Default\Cache"
@@ -47,14 +49,13 @@ goto main
 
 :Default
 rem 사용자 크롬 경로 지정
-set ChromeDrive="R:\Temp\Chrome_cache"
-rmdir "%ChromeDrive%"
+set /p ChromeTempDrivePath=임시 폴더 저장 경로:
+set ChromeDrive=%ChromeTempDrivePath%
+echo 설정한 경로는 %ChromeTempDrivePath% 입니다.
 rem 크롬 Cache , Media Cache 폴더 지정 삭제
 rd "%ChromeDrive%"
 rem 크롬  기본캐시폴더 삭제
 rd /s /q "%LocalAppData%\Google\Chrome\User Data\Default\Cache"
-
-
 pause
 goto main
 
